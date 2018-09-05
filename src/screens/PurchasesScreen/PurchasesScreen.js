@@ -38,18 +38,6 @@ class PurchasesScreen extends React.Component<Props> {
   // componentDidMount() {
   //   console.log(Platform.OS);
   //   if (this.props.purchases) {
-  //     const newWorkbook = XLSX.utils.book_new();
-  //     const purchases = this.props.purchases.toJS();
-  //     // console.log(JSON.stringify(purchases));
-  //     // const worksheet = XLSX.utils.json_to_sheet(purchases);
-  //     // // const wbout = XLSX.write(newWorkbook, {
-  //     // //   type: "binary",
-  //     // //   bookType: "xlsx"
-  //     // // });
-  //     // // const file = `${ExternalDirectoryPath}/test.xlsx`;
-  //     // // console.log(file);
-  //     // // // console.log(wbout);
-
   //     // // const base =
   //     // //   "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64, ";
   //     // // console.log(base + wbout);

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
+    "excel-builder": "^2.0.3",
     "immutable": "^4.0.0-rc.9",
     "moment": "^2.22.2",
     "native-base": "^2.7.1",
@@ -36,8 +37,7 @@
     "redux-thunk": "^2.3.0",
     "remote-redux-devtools": "0.5.5",
     "reselect": "^3.0.1",
-    "uuid": "^3.3.2",
-    "xlsx": "^0.13.5"
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",

@@ -2,10 +2,10 @@
 import { handleActions } from "redux-actions";
 import { Record } from "immutable";
 import type { RecordFactory, RecordOf } from "immutable";
-import moment from "moment";
+
 import type { Payload } from "../types";
 import * as mainActions from "../actions/mainActions";
-import { timeModel } from "../constants";
+import { getUtcTime, incrementDate, decrementDate } from "../utils/dateService";
 
 type state = {
   name: string,
@@ -16,7 +16,7 @@ type state = {
 export const MainInitialState: RecordFactory<state> = Record(
   {
     name: "vadJs",
-    currentDate: moment.utc().valueOf(),
+    currentDate: getUtcTime(),
     isDatePickerOpen: false
   },
   "mainReducerState"
@@ -28,26 +28,13 @@ const handleOpenDatePicker = (state): RecordOf<state> =>
 const handleIncreaseDate = (state): RecordOf<state> => {
   const currTime = state.get("currentDate");
 
-  return state.set(
-    "currentDate",
-    moment
-      .utc(currTime)
-      .add(1, "d")
-      .valueOf()
-  );
+  return state.set("currentDate", incrementDate(currTime));
 };
 
 const handleDecreaseDate = (state): RecordOf<state> => {
   const currTime = state.get("currentDate");
 
-  return state.set(
-    "currentDate",
-    // moment(currTime, timeModel)
-    moment
-      .utc(currTime)
-      .subtract(1, "d")
-      .valueOf()
-  );
+  return state.set("currentDate", decrementDate(currTime));
 };
 
 const handleChangeMainName = (
@@ -58,8 +45,7 @@ const handleChangeMainName = (
 const handleSetCurrent = (
   state,
   { payload }: Payload<string>
-): RecordOf<state> =>
-  state.set("currentDate", moment(payload).format(timeModel));
+): RecordOf<state> => state.set("currentDate", getUtcTime(payload));
 
 export default handleActions(
   {

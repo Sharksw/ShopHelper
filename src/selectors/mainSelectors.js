@@ -1,7 +1,6 @@
 import { createSelector } from "reselect";
-import moment from "moment";
 
-import { timeModel } from "../constants";
+import { formatDate } from "../utils/dateService";
 
 const getMainState = store => store.mainReducer;
 
@@ -13,7 +12,7 @@ export const getCurrentDate = createSelector(getMainState, main =>
   main.get("currentDate")
 );
 export const getCurrentFormattedDate = createSelector(getMainState, main =>
-  moment(main.get("currentDate")).format(timeModel)
+  formatDate(main.get("currentDate"))
 );
 
 export const getIsDatePickerOpen = createSelector(getMainState, main =>
