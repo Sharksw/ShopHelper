@@ -29,18 +29,11 @@ export const PurchaseItemState: RecordFactory<PurchaseItem> = Record(
     barCode: "",
     shopName: "",
     date: 0,
-    currency: "USD"
+    currency: "USD",
+    amount: 0
   },
   "purchaseItem"
 );
-
-// $FlowFixMe
-Object.defineProperty(PurchaseItemState.prototype, "amount", {
-  get() {
-    if (!this.price) return 0;
-    return this.price * this.quantity;
-  }
-});
 
 type PurchaseList = List<PurchaseItemState>;
 
@@ -89,8 +82,14 @@ const addShop = (
 const addPurchase = (
   state,
   {
-    payload: { id, price, quantity, date }
-  }: Payload<{ id: string, price: string, quantity: string, date: string }>
+    payload: { id, price, quantity, date, shopName }
+  }: Payload<{
+    id: string,
+    price: string,
+    quantity: string,
+    date: string,
+    shopName: string
+  }>
 ): RecordOf<state> => {
   const purchaseList = getList(state, "shops", id);
 
@@ -100,7 +99,9 @@ const addPurchase = (
       name: `Товар ${purchaseList.size + 1}`,
       price: +price,
       quantity: +quantity,
-      date
+      date,
+      shopName,
+      amount: +price * +quantity
     })
   );
 
@@ -169,6 +170,20 @@ const updateShop = (
   return state.setIn(["dates", date], updateList);
 };
 
+const getUpdatedAmount = (shopList, param, value, id) => {
+  if (param === "price") {
+    const quantity = shopList.find(item => item.id === id).get("quantity");
+    return quantity * +value;
+  }
+
+  if (param === "quantity") {
+    const price = shopList.find(item => item.id === id).get("price");
+    return price * +value;
+  }
+
+  return null;
+};
+
 const updatePurchase = (
   state,
   {
@@ -182,9 +197,15 @@ const updatePurchase = (
   }>
 ): RecordOf<state> => {
   const shopList = getList(state, "shops", shopId);
+  const amount = getUpdatedAmount(shopList, param, value, id);
   const updatedList = shopList.update(
     shopList.findIndex(item => item.id === id),
-    item => item.set(param, value)
+    item =>
+      amount
+        ? item.withMutations(purchase =>
+            purchase.set(param, value).set("amount", amount)
+          )
+        : item.set(param, value)
   );
 
   const updateDateList = updatedListWithTotalAmount({

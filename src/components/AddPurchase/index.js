@@ -9,7 +9,9 @@ import styles from "./styles";
 
 type Props = {
   id: string,
+  currency: string,
   createPurchase: Function,
+  shopName: string,
   currentDate: string
 };
 
@@ -29,11 +31,15 @@ class AddPurchase extends PureComponent<Props, State> {
 
   createPurchase = () => {
     const { price, quantity } = this.state;
-    return this.props.createPurchase({
-      id: this.props.id,
+    const { createPurchase, id, shopName, currentDate, currency } = this.props;
+
+    return createPurchase({
+      id,
       price,
+      shopName,
       quantity: quantity || "1",
-      date: this.props.currentDate
+      date: currentDate,
+      currency
     });
   };
 

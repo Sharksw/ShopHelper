@@ -18,11 +18,14 @@ import {
   updatePurchase
 } from "../../actions/shoppingActions";
 
+import { getCurrency } from "../../selectors/settingSelectors";
+
 const makeMapStateToProps = () => {
   const purchases = getPurchases();
 
   const mapStateToProps = createStructuredSelector({
     currentDate: getCurrentDate,
+    currency: getCurrency,
     shopList: getShopList,
     shopAmount: getShopAmount,
     shopQuantity: getShopQuantity,

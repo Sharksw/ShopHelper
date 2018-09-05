@@ -24,8 +24,16 @@ class Conclusion extends Component<Props> {
   };
 
   excelPress = () => {
-    console.log(this.props.datesShopList);
-    console.log(this.props.shopsPurchases);
+    console.log(
+      JSON.stringify(
+        this.props.shopsPurchases
+          .toList()
+          .sortBy(item => item.date)
+          .flatten(),
+        null,
+        2
+      )
+    );
   };
 
   render() {

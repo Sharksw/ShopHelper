@@ -13,6 +13,7 @@ import styles from "./styles";
 
 type Props = {
   currentDate: string,
+  currency: string,
   shopList: any,
   purchases: any,
   shopAmount: number,
@@ -114,6 +115,8 @@ class PurchasesScreen extends React.Component<Props> {
           id={id}
           createPurchase={this.props.createPurchase}
           currentDate={this.props.currentDate}
+          shopName={this.state.shop.name}
+          currency={this.props.currency}
         />
         <View style={styles.purchases}>
           <ScrollView>{this.purchaseItemMapper()}</ScrollView>
