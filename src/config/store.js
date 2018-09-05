@@ -21,7 +21,7 @@ export default () => {
   const enhancer = composeEnhancers(applyMiddleware(...middlewares));
   const store = createStore(persistedReducer, enhancer);
   const persistor = persistStore(store);
-  // persistor.purge();
+  persistor.purge();
 
   return { store, persistor };
 };

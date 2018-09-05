@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import Calendar from "./Calendar";
-import { getCurrentDate } from "../../selectors/mainSelectors";
+import { getCurrentFormattedDate } from "../../selectors/mainSelectors";
 import { changeDate } from "../../actions/mainActions";
 
 const mapStateToProps = state => ({
-  currDate: getCurrentDate(state)
+  currDate: getCurrentFormattedDate(state)
 });
 
 const mapDispatchToProps = {

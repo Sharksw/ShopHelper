@@ -14,7 +14,7 @@ type Props = {
   createShop: Function,
   shopList: any,
   amountOfMoney: number,
-  shopsPurchases: Object
+  shopsPurchases: any
 };
 
 const style = { width: "100%", height: "100%" };
@@ -70,10 +70,7 @@ class FirstScreen extends React.PureComponent<Props> {
                 />
               </View>
             </View>
-            <Conclusion
-              navigate={() => this.goToPage("Settings")}
-              amountOfMoney={this.props.amountOfMoney}
-            />
+            <Conclusion navigate={() => this.goToPage("Settings")} />
           </View>
         </ImageBackground>
       </View>

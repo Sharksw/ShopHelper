@@ -6,10 +6,15 @@ import { getRouteId } from "./navSelectors";
 
 const getShoppingState = store => store.shopingReducer;
 
+export const getDatesShops = createSelector(getShoppingState, shops => {
+  const shopsList = shops.get("dates");
+  return shopsList;
+});
+
 export const getShopList = createSelector(
-  [getShoppingState, getCurrentDate],
+  [getDatesShops, getCurrentDate],
   (shops, date) => {
-    const shopsList = shops.getIn(["dates", date], List());
+    const shopsList = shops.get(date, List());
     return shopsList;
   }
 );

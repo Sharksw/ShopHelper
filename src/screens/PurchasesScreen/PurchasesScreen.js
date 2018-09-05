@@ -1,7 +1,8 @@
 import React from "react";
 
 import { View, ScrollView } from "react-native";
-// import { List} from "native-base"
+// import { writeFile, ExternalDirectoryPath } from "react-native-fs";
+// import Share from "react-native-share";
 
 import AddPurchase from "../../components/AddPurchase";
 import PurchaseHeader from "../../containers/PurchaseHeader";
@@ -26,15 +27,53 @@ class PurchasesScreen extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      id: props.navigation.getParam("id")
+      id: props.navigation.getParam("id"),
+      shop: props.shopList.find(
+        ({ id }) => id === props.navigation.getParam("id")
+      )
     };
   }
+
+  // componentDidMount() {
+  //   console.log(Platform.OS);
+  //   if (this.props.purchases) {
+  //     const newWorkbook = XLSX.utils.book_new();
+  //     const purchases = this.props.purchases.toJS();
+  //     // console.log(JSON.stringify(purchases));
+  //     // const worksheet = XLSX.utils.json_to_sheet(purchases);
+  //     // // const wbout = XLSX.write(newWorkbook, {
+  //     // //   type: "binary",
+  //     // //   bookType: "xlsx"
+  //     // // });
+  //     // // const file = `${ExternalDirectoryPath}/test.xlsx`;
+  //     // // console.log(file);
+  //     // // // console.log(wbout);
+
+  //     // // const base =
+  //     // //   "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64, ";
+  //     // // console.log(base + wbout);
+
+  //     // // writeFile(file, wbout, "ascii")
+  //     // //   .then(r => {
+  //     // //     const shareOptions = {
+  //     // //       title: "Share via",
+  //     // //       url: Platform.OS === "android" ? `file://${file}` : file
+  //     // //     };
+  //     // //     Share.open(shareOptions);
+  //     // //     console.log(shareOptions.url);
+  //     // //     console.log("success");
+  //     // //   })
+  //     // //   .catch(e => {
+  //     // //     console.log(e);
+  //     // //   });
+  //     // // console.log(wbout);
+  //   }
+  // }
   componentWillUnmount = () => {
-    const { purchases, shopList, deleteShop, currentDate } = this.props;
-    const currentShop = shopList.find(({ id }) => id === this.state.id);
+    const { purchases, deleteShop, currentDate } = this.props;
 
     if (!purchases) {
-      deleteShop({ date: currentDate, id: currentShop.get("id") });
+      deleteShop({ date: currentDate, id: this.state.shop.get("id") });
     }
   };
 

@@ -16,7 +16,7 @@ type state = {
 export const MainInitialState: RecordFactory<state> = Record(
   {
     name: "vadJs",
-    currentDate: moment().format(timeModel),
+    currentDate: moment.utc().valueOf(),
     isDatePickerOpen: false
   },
   "mainReducerState"
@@ -30,9 +30,10 @@ const handleIncreaseDate = (state): RecordOf<state> => {
 
   return state.set(
     "currentDate",
-    moment(currTime, timeModel)
+    moment
+      .utc(currTime)
       .add(1, "d")
-      .format(timeModel)
+      .valueOf()
   );
 };
 
@@ -41,9 +42,11 @@ const handleDecreaseDate = (state): RecordOf<state> => {
 
   return state.set(
     "currentDate",
-    moment(currTime, timeModel)
+    // moment(currTime, timeModel)
+    moment
+      .utc(currTime)
       .subtract(1, "d")
-      .format(timeModel)
+      .valueOf()
   );
 };
 

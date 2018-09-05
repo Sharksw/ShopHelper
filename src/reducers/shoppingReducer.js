@@ -26,7 +26,10 @@ export const PurchaseItemState: RecordFactory<PurchaseItem> = Record(
     price: 0.0,
     quantity: 1.0,
     photo: "",
-    barCode: ""
+    barCode: "",
+    shopName: "",
+    date: 0,
+    currency: "USD"
   },
   "purchaseItem"
 );
@@ -96,7 +99,8 @@ const addPurchase = (
       id: uuid(),
       name: `Товар ${purchaseList.size + 1}`,
       price: +price,
-      quantity: +quantity
+      quantity: +quantity,
+      date
     })
   );
 
