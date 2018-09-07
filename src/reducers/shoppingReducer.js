@@ -200,14 +200,18 @@ const updatePurchase = (
 ): RecordOf<state> => {
   const shopList = getList(state, "shops", shopId);
   const amount = getUpdatedAmount(shopList, param, value, id);
+  const updatedValue =
+    param === "quantity" || param === "price" || param === "amount"
+      ? +value
+      : value;
   const updatedList = shopList.update(
     shopList.findIndex(item => item.id === id),
     item =>
       amount
         ? item.withMutations(purchase =>
-            purchase.set(param, value).set("amount", amount)
+            purchase.set(param, updatedValue).set("amount", amount)
           )
-        : item.set(param, value)
+        : item.set(param, updatedValue)
   );
 
   const updateDateList = updatedListWithTotalAmount({
