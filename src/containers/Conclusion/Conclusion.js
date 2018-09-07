@@ -45,7 +45,7 @@ class Conclusion extends Component<Props> {
         title: "Share via",
         url: Platform.OS === "android" ? `file://${file}` : file
       };
-      Share.open(shareOptions).catch(() => {});
+      await Share.open(shareOptions);
     } catch (err) {
       console.log("error");
       console.log(err);
