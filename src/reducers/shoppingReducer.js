@@ -82,13 +82,14 @@ const addShop = (
 const addPurchase = (
   state,
   {
-    payload: { id, price, quantity, date, shopName }
+    payload: { id, price, quantity, date, shopName, currency }
   }: Payload<{
     id: string,
     price: string,
     quantity: string,
     date: string,
-    shopName: string
+    shopName: string,
+    currency: string
   }>
 ): RecordOf<state> => {
   const purchaseList = getList(state, "shops", id);
@@ -96,6 +97,7 @@ const addPurchase = (
   const updatedList = purchaseList.unshift(
     new PurchaseItemState({
       id: uuid(),
+      currency,
       name: `Товар ${purchaseList.size + 1}`,
       price: +price,
       quantity: +quantity,

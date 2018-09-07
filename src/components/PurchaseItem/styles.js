@@ -28,5 +28,14 @@ export default StyleSheet.create({
     justifyContent: "space-around",
     flexGrow: 1,
     paddingLeft: 24
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  inputContainer: {
+    // width: "100%",
+    flexGrow: 1,
+    paddingTop: 12
   }
 });

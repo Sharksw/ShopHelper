@@ -53,6 +53,7 @@ class PurchasesScreen extends React.Component<Props> {
             <PurchaseItem
               key={id}
               id={id}
+              currency={item.get("currency")}
               deletePurchase={this.props.deletePurchase}
               updatePurchase={this.props.updatePurchase}
               currentDate={this.props.currentDate}
