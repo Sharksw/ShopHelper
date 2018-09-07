@@ -1,7 +1,11 @@
 /* @flow  */
 import React, { Component } from "react";
 import { View, Text, Platform } from "react-native";
-import { writeFile, ExternalDirectoryPath } from "react-native-fs";
+import {
+  writeFile,
+  ExternalDirectoryPath,
+  DocumentDirectoryPath
+} from "react-native-fs";
 import Share from "react-native-share";
 import Icon from "react-native-vector-icons/FontAwesome";
 import styles from "./styles";
@@ -15,11 +19,6 @@ type Props = {
   shopsPurchases: any,
   amountOfMoney: any
 };
-
-// ({
-//   amountOfMoney = 0,
-//   navigate
-// }): React.Node => (
 
 class Conclusion extends Component<Props> {
   static defaultProps = {
@@ -36,7 +35,10 @@ class Conclusion extends Component<Props> {
           .toJS()
       );
 
-      const file = `${ExternalDirectoryPath}/report.xlsx`;
+      const file =
+        Platform.OS === "android"
+          ? `${ExternalDirectoryPath}/report.xlsx`
+          : `${DocumentDirectoryPath}/report.xlsx`;
 
       await writeFile(file, data, "ascii");
       const shareOptions = {

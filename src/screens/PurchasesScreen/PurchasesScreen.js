@@ -1,8 +1,6 @@
 import React from "react";
 
 import { View, ScrollView } from "react-native";
-// import { writeFile, ExternalDirectoryPath } from "react-native-fs";
-// import Share from "react-native-share";
 
 import AddPurchase from "../../components/AddPurchase";
 import PurchaseHeader from "../../containers/PurchaseHeader";
@@ -35,29 +33,6 @@ class PurchasesScreen extends React.Component<Props> {
     };
   }
 
-  // componentDidMount() {
-  //   console.log(Platform.OS);
-  //   if (this.props.purchases) {
-  //     // // const base =
-  //     // //   "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64, ";
-  //     // // console.log(base + wbout);
-
-  //     // // writeFile(file, wbout, "ascii")
-  //     // //   .then(r => {
-  //     // //     const shareOptions = {
-  //     // //       title: "Share via",
-  //     // //       url: Platform.OS === "android" ? `file://${file}` : file
-  //     // //     };
-  //     // //     Share.open(shareOptions);
-  //     // //     console.log(shareOptions.url);
-  //     // //     console.log("success");
-  //     // //   })
-  //     // //   .catch(e => {
-  //     // //     console.log(e);
-  //     // //   });
-  //     // // console.log(wbout);
-  //   }
-  // }
   componentWillUnmount = () => {
     const { purchases, deleteShop, currentDate } = this.props;
 
