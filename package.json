@@ -10,14 +10,15 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
-    "excel-builder": "^2.0.3",
+    "excel-builder-webpack": "https://github.com/artemydarkshark/excel-builder.js.git",
     "immutable": "^4.0.0-rc.9",
+    "jszip": "^3.1.5",
     "moment": "^2.22.2",
     "native-base": "^2.7.1",
     "react": "^16.4.1",
     "react-native": "^0.56.0",
     "react-native-camera": "^1.2.0",
-    "react-native-datepicker": "^1.7.2",
+    "react-native-datepicker": "^1.7.2jjj",
     "react-native-elements": "^0.19.1",
     "react-native-fs": "^2.11.15",
     "react-native-material-dropdown": "^0.11.1",
@@ -37,6 +38,7 @@
     "redux-thunk": "^2.3.0",
     "remote-redux-devtools": "0.5.5",
     "reselect": "^3.0.1",
+    "stream": "0.0.2",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

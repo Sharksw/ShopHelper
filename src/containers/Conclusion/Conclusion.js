@@ -1,9 +1,12 @@
 /* @flow  */
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Platform } from "react-native";
+import { writeFile, ExternalDirectoryPath } from "react-native-fs";
+import Share from "react-native-share";
 import Icon from "react-native-vector-icons/FontAwesome";
 import styles from "./styles";
 import { iconSize } from "../../config/commonSizes";
+import excelConverter from "../../utils/excelConverter";
 
 type Props = {
   amountOfMoney?: number,
@@ -23,17 +26,28 @@ class Conclusion extends Component<Props> {
     amountOfMoney: 0
   };
 
-  excelPress = () => {
-    console.log(
-      JSON.stringify(
+  excelPress = async () => {
+    try {
+      const data = await excelConverter(
         this.props.shopsPurchases
           .toList()
           .sortBy(item => item.date)
-          .flatten(),
-        null,
-        2
-      )
-    );
+          .flatten()
+          .toJS()
+      );
+
+      const file = `${ExternalDirectoryPath}/report.xlsx`;
+
+      await writeFile(file, data, "ascii");
+      const shareOptions = {
+        title: "Share via",
+        url: Platform.OS === "android" ? `file://${file}` : file
+      };
+      Share.open(shareOptions);
+    } catch (err) {
+      console.log("error");
+      console.log(err);
+    }
   };
 
   render() {
