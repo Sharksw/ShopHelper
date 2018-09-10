@@ -3,6 +3,7 @@ import { List, Map, Record, isCollection } from "immutable";
 
 import { getCurrentDate } from "./mainSelectors";
 import { getRouteId } from "./navSelectors";
+import { currencies } from "../constants/options";
 
 const getShoppingState = store => store.shopingReducer;
 
@@ -56,6 +57,18 @@ export const getHeaderShop = createSelector(
   (shops, id) => shops.find(item => item.id === id)
 );
 
+const currencyObject = currencies.reduce(
+  (acc, { value }) => acc.set(value, 0),
+  new Map()
+);
+
 export const getDailyAmount = createSelector(getShopList, shopList =>
-  shopList.reduce((acc, item) => acc + item.totalAmount, 0)
+  shopList
+    .reduce(
+      (acc, item) =>
+        acc.set(item.currency, acc.get(item.currency) + item.totalAmount),
+      currencyObject
+    )
+    .map((value, key) => `${value} ${key}`)
+    .join("/")
 );

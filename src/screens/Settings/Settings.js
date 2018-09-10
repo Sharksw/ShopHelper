@@ -8,19 +8,9 @@ import Input from "../../components/Input";
 import Select from "../../components/Select";
 import TextBlock from "../../components/TextBlock";
 import { timeModel } from "../../constants";
+import { languages, currencies } from "../../constants/options";
 
 import styles from "./styles";
-
-const languages = [
-  { id: "1", label: "Русский", value: "ru" },
-  { id: "2", label: "English", value: "en" }
-];
-
-const currencies = [
-  { id: "1", label: "Гривна", value: "UAH" },
-  { id: "2", label: "Доллар", value: "USD" },
-  { id: "3", label: "Евро", value: "EUR" }
-];
 
 type Props = {
   setCurrent: Function,

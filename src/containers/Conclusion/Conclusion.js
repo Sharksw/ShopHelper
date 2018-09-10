@@ -61,7 +61,7 @@ class Conclusion extends Component<Props> {
     return (
       <View style={styles.container}>
         <Icon name="cogs" size={iconSize} onPress={navigate} />
-        <Text>{`${amountOfMoney} грн`}</Text>
+        <Text>{amountOfMoney}</Text>
         <Icon
           name="file-excel-o"
           size={iconSize}

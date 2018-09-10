@@ -38,6 +38,7 @@ class FirstScreen extends React.PureComponent<Props> {
           key={id}
           id={id}
           text={item.get("name")}
+          currency={item.get("currency")}
           amount={item.get("totalAmount")}
           goToPage={this.goToPage}
         />
