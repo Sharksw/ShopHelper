@@ -7,7 +7,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { Navigator } from "./config/navigator";
+import NavigatorContainer from "./containers/NavigatorContainer";
 
 import configureStore from "./config/store";
 
@@ -16,7 +16,7 @@ const { store, persistor } = configureStore();
 const App = () => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <Navigator />
+      <NavigatorContainer />
     </PersistGate>
   </Provider>
 );

@@ -14,7 +14,8 @@ type Props = {
   createShop: Function,
   shopList: any,
   amountOfMoney: number,
-  shopsPurchases: any
+  shopsPurchases: any,
+  isLoading: boolean
 };
 
 const style = { width: "100%", height: "100%" };

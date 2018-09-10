@@ -17,7 +17,8 @@ type Props = {
   navigate: () => void,
   datesShopList: any,
   shopsPurchases: any,
-  amountOfMoney: any
+  amountOfMoney: any,
+  switchLoading: Function
 };
 
 class Conclusion extends Component<Props> {
@@ -27,6 +28,7 @@ class Conclusion extends Component<Props> {
 
   excelPress = async () => {
     try {
+      this.props.switchLoading(true);
       const data = await excelConverter(
         this.props.shopsPurchases
           .toList()
@@ -49,6 +51,8 @@ class Conclusion extends Component<Props> {
     } catch (err) {
       console.log("error");
       console.log(err);
+    } finally {
+      this.props.switchLoading(false);
     }
   };
 

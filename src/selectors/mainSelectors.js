@@ -18,3 +18,6 @@ export const getCurrentFormattedDate = createSelector(getMainState, main =>
 export const getIsDatePickerOpen = createSelector(getMainState, main =>
   main.get("isDatePickerOpen")
 );
+export const getIsLoading = createSelector(getMainState, main =>
+  main.get("isLoading")
+);

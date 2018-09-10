@@ -10,20 +10,27 @@ import { getUtcTime, incrementDate, decrementDate } from "../utils/dateService";
 type state = {
   name: string,
   currentDate: string,
-  isDatePickerOpen: boolean
+  isDatePickerOpen: boolean,
+  isLoading: boolean
 };
 
 export const MainInitialState: RecordFactory<state> = Record(
   {
     name: "vadJs",
     currentDate: getUtcTime(),
-    isDatePickerOpen: false
+    isDatePickerOpen: false,
+    isLoading: false
   },
   "mainReducerState"
 );
 
 const handleOpenDatePicker = (state): RecordOf<state> =>
   state.set("isDatePickerOpen", true);
+
+const handleSwitchLoading = (
+  state,
+  { payload }: Payload<boolean>
+): RecordOf<state> => state.set("isLoading", payload);
 
 const handleIncreaseDate = (state): RecordOf<state> => {
   const currTime = state.get("currentDate");
@@ -53,7 +60,8 @@ export default handleActions(
     [mainActions.changeDate.decrease]: handleDecreaseDate,
     [mainActions.changeDate.setCurrent]: handleSetCurrent,
     [mainActions.changeMainName]: handleChangeMainName,
-    [mainActions.openDatePicker]: handleOpenDatePicker
+    [mainActions.openDatePicker]: handleOpenDatePicker,
+    [mainActions.switchLoading]: handleSwitchLoading
   },
   new MainInitialState()
 );

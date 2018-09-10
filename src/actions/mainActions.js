@@ -15,3 +15,5 @@ export const { changeDate } = createActions({
 });
 
 export const openDatePicker = createAction("OPEN_DATE_PICKER");
+
+export const switchLoading = createAction("SWITCH_LOADING", payload => payload);

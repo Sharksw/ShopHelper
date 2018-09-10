@@ -8,6 +8,8 @@ import {
   getShopsPurchases
 } from "../../selectors/shoppingSelectors";
 
+import { switchLoading } from "../../actions/mainActions";
+
 import Conclusion from "./Conclusion";
 
 const mapStateToProps = createStructuredSelector({
@@ -16,4 +18,9 @@ const mapStateToProps = createStructuredSelector({
   amountOfMoney: getDailyAmount
 });
 
-export default connect(mapStateToProps)(Conclusion);
+const mapDispatchToProps = { switchLoading };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Conclusion);
