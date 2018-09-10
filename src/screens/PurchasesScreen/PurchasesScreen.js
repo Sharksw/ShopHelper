@@ -26,11 +26,20 @@ class PurchasesScreen extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      id: props.navigation.getParam("id"),
-      shop: props.shopList.find(
-        ({ id }) => id === props.navigation.getParam("id")
-      )
+      id: null,
+      shop: null
     };
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if ((!prevState.id || !prevState.shop) && nextProps.navigation) {
+      const id = nextProps.navigation.getParam("id");
+      return {
+        id,
+        shop: nextProps.shopList.find(item => item.id === id)
+      };
+    }
+    return null;
   }
 
   componentWillUnmount = () => {
@@ -71,6 +80,7 @@ class PurchasesScreen extends React.Component<Props> {
       : null;
 
   render() {
+    if (!this.state.shop) return null;
     const id = this.props.navigation.getParam("id");
 
     return (
@@ -79,7 +89,7 @@ class PurchasesScreen extends React.Component<Props> {
           id={id}
           createPurchase={this.props.createPurchase}
           currentDate={this.props.currentDate}
-          shopName={this.state.shop.name}
+          shop={this.state.shop}
           currency={this.props.currency}
         />
         <View style={styles.purchases}>

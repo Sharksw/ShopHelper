@@ -16,6 +16,12 @@ const languages = [
   { id: "2", label: "English", value: "en" }
 ];
 
+const currencies = [
+  { id: "1", label: "Гривна", value: "UAH" },
+  { id: "2", label: "Доллар", value: "USD" },
+  { id: "3", label: "Евро", value: "EUR" }
+];
+
 type Props = {
   setCurrent: Function,
   currency: string,
@@ -33,10 +39,11 @@ class Settings extends PureComponent<Props> {
         <TextBlock styles={styles.header} bold>
           Настройки покупок
         </TextBlock>
-        <Input
+        <Select
           placeholder="Гривны"
-          value={this.props.currency}
-          onChangeText={text => this.changeSetting("currency", text)}
+          selectedValue={this.props.currency}
+          onValueChange={value => this.changeSetting("currency", value)}
+          options={currencies}
         />
         <Select
           selectedValue={this.props.locale}

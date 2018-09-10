@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { List } from "immutable";
+import { List, Map, Record, isCollection } from "immutable";
 
 import { getCurrentDate } from "./mainSelectors";
 import { getRouteId } from "./navSelectors";
@@ -7,7 +7,7 @@ import { getRouteId } from "./navSelectors";
 const getShoppingState = store => store.shopingReducer;
 
 export const getDatesShops = createSelector(getShoppingState, shops => {
-  const shopsList = shops.get("dates");
+  const shopsList = shops.get("dates", Map());
   return shopsList;
 });
 
@@ -22,25 +22,33 @@ export const getShopList = createSelector(
 export const getId = (store, ownProps) => ownProps.navigation.getParam("id");
 
 export const getShopsPurchases = createSelector([getShoppingState], shops =>
-  shops.get("shops")
+  shops.get("shops", Map())
 );
 
 export const getPurchases = () =>
-  createSelector([getShopsPurchases, getId], (shops, id) => shops.get(id));
+  createSelector([getShopsPurchases, getId], (shops, id) =>
+    shops.get(id, List())
+  );
 
 export const getCurrentShop = createSelector(
   [getShopsPurchases, getId],
-  (shops, id) => shops.get(id)
+  (shops, id) => (id ? shops.get(id, new Record()) : new Record())
 );
 
 export const getShopQuantity = createSelector(
   getCurrentShop,
-  shop => (shop ? shop.reduce((acc, item) => item.get("quantity") + acc, 0) : 0)
+  shop =>
+    isCollection(shop)
+      ? shop.reduce((acc, item) => item.get("quantity") + acc, 0)
+      : 0
 );
 
 export const getShopAmount = createSelector(
   [getShopList, getId],
-  (shopList, id) => shopList.find(item => item.id === id).get("totalAmount")
+  (shopList, id) => {
+    const shop = shopList.find(item => item.id === id);
+    return shop ? shop.get("totalAmount") : 0;
+  }
 );
 
 export const getHeaderShop = createSelector(

@@ -17,6 +17,7 @@ const PurchaseHeader = (props: Props) => {
   const name = props.shop.get("name");
   const totalAmount = props.shop.get("totalAmount");
   const id = props.shop.get("id");
+  const currency = props.shop.get("currency");
   return (
     <View
       style={{
@@ -33,7 +34,10 @@ const PurchaseHeader = (props: Props) => {
         }
       />
       <View style={{ marginLeft: 10 }}>
-        <Text style={{ color: "#fff", fontSize: 24 }}> Σ {totalAmount}</Text>
+        <Text style={{ color: "#fff", fontSize: 24 }}>
+          {" "}
+          Σ {totalAmount} {currency}
+        </Text>
       </View>
     </View>
   );

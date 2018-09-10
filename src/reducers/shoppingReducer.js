@@ -12,6 +12,7 @@ export const DateItem: RecordFactory<ShopItem> = Record(
   {
     id: uuid(),
     name: "Покупка",
+    currency: "USD",
     totalAmount: 0
   },
   "shopItem"
@@ -67,13 +68,13 @@ const updatedListWithTotalAmount = ({ state, updatedList, date, shopId }) => {
 
 const addShop = (
   state,
-  { payload }: Payload<{ id: string, date: string }>
+  { payload }: Payload<{ id: string, date: string, currency: string }>
 ): RecordOf<state> => {
-  const { date, id } = payload;
+  const { date, id, currency } = payload;
   const list = state.getIn(["dates", date], List());
 
   const updateList = list.push(
-    new DateItem({ id, name: `Покупка ${list.size + 1}` })
+    new DateItem({ id, name: `Покупка ${list.size + 1}`, currency })
   );
 
   return state.setIn(["dates", date], updateList);

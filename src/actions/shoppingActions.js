@@ -22,9 +22,11 @@ export const deletePurchase = createAction(
 export const removeDate = createAction("REMOVE_DATE", payload => payload);
 
 export const createShop = () => (dispatch: Dispatch, getState: Function) => {
-  const { mainReducer } = getState();
+  const { mainReducer, settingReducer } = getState();
   const date = mainReducer.get("currentDate");
+  const currency = settingReducer.get("currency");
   const id = uuid();
+
   dispatch(
     NavigationActions.navigate({
       routeName: "PurchasesScreen",
@@ -34,5 +36,5 @@ export const createShop = () => (dispatch: Dispatch, getState: Function) => {
     })
   );
 
-  dispatch(addShop({ date, id }));
+  dispatch(addShop({ date, id, currency }));
 };

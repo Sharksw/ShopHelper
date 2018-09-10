@@ -11,7 +11,7 @@ type Props = {
   id: string,
   currency: string,
   createPurchase: Function,
-  shopName: string,
+  shop: any,
   currentDate: string
 };
 
@@ -31,15 +31,15 @@ class AddPurchase extends PureComponent<Props, State> {
 
   createPurchase = () => {
     const { price, quantity } = this.state;
-    const { createPurchase, id, shopName, currentDate, currency } = this.props;
+    const { createPurchase, id, shop, currentDate } = this.props;
 
     return createPurchase({
       id,
       price,
-      shopName,
+      shopName: shop.name,
       quantity: quantity || "1",
       date: currentDate,
-      currency
+      currency: shop.currency
     });
   };
 
