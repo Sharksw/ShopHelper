@@ -19,7 +19,7 @@ export const deletePurchase = createAction(
   payload => payload
 );
 
-export const removeDate = createAction("REMOVE_DATE", payload => payload);
+export const removeTillDate = createAction("REMOVE_DATE", payload => payload);
 
 export const createShop = () => (dispatch: Dispatch, getState: Function) => {
   const { mainReducer, settingReducer } = getState();

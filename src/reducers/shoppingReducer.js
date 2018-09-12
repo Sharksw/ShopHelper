@@ -229,6 +229,23 @@ const updatePurchase = (
   );
 };
 
+const removeTillDate = (
+  state,
+  { payload }: Payload<string>
+): RecordOf<state> => {
+  const dates = state.get("dates").filter((item, key) => +payload < +key);
+  const shopsIds = dates
+    .toList()
+    .flatten()
+    .map(item => item.get("id"));
+
+  state.get("shops").deleteAll(shopsIds);
+
+  return state.withMutations(mutateState =>
+    mutateState.set("dates", dates).set("shops", state.get("shops"))
+  );
+};
+
 export default handleActions(
   {
     [shoppingActions.addShop]: addShop,
@@ -236,7 +253,8 @@ export default handleActions(
     [shoppingActions.deleteShop]: deleteShop,
     [shoppingActions.createPurchase]: addPurchase,
     [shoppingActions.updatePurchase]: updatePurchase,
-    [shoppingActions.deletePurchase]: deletePurchase
+    [shoppingActions.deletePurchase]: deletePurchase,
+    [shoppingActions.removeTillDate]: removeTillDate
   },
   new ShoppingState()
 );

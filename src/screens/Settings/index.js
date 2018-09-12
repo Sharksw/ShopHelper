@@ -4,18 +4,26 @@ import Settings from "./Settings";
 
 import * as settingSelectors from "../../selectors/settingSelectors";
 import { changeDate } from "../../actions/mainActions";
-import { changeSetting } from "../../actions/settingActions";
+import { removeTillDate } from "../../actions/shoppingActions";
+import {
+  changeSetting,
+  changeDateRemoving
+} from "../../actions/settingActions";
 
 const mapStateToProps = createStructuredSelector({
   currency: settingSelectors.getCurrency,
   locale: settingSelectors.getLocale,
   reportName: settingSelectors.getReportName,
-  email: settingSelectors.getEmail
+  email: settingSelectors.getEmail,
+  removingDate: settingSelectors.getRemovingDate,
+  formatedRemovingDate: settingSelectors.getFormatedRemovingDate
 });
 
 const mapDispatchToProps = {
   setCurrent: changeDate.setCurrent,
-  changeSetting
+  changeSetting,
+  changeDateRemoving,
+  removeTillDate
 };
 
 export default connect(

@@ -1,13 +1,13 @@
 // @flow
 import React, { PureComponent } from "react";
 import { View } from "react-native";
-import DatePicker from "react-native-datepicker";
+import Date from "../../components/Date";
 
 import SettingButton from "../../components/SettingButton";
 import Input from "../../components/Input";
 import Select from "../../components/Select";
 import TextBlock from "../../components/TextBlock";
-import { timeModel } from "../../constants";
+
 import { languages, currencies } from "../../constants/options";
 
 import styles from "./styles";
@@ -18,11 +18,17 @@ type Props = {
   locale: string,
   reportName: string,
   email: string,
-  changeSetting: Function
+  changeSetting: Function,
+  removingDate: string,
+  formatedRemovingDate: string,
+  changeDateRemoving: Function,
+  removeTillDate: Function
 };
 
 class Settings extends PureComponent<Props> {
   changeSetting = (name, value) => this.props.changeSetting({ name, value });
+  removeDates = () => this.props.removeTillDate(this.props.removingDate);
+
   render() {
     return (
       <View style={styles.settingContainer}>
@@ -44,17 +50,14 @@ class Settings extends PureComponent<Props> {
         {/* <SettingButton onPress={() => {}} title="Сохранить" /> */}
         <View style={styles.dateContainer}>
           <TextBlock>Удалить все записи по: </TextBlock>
-          <DatePicker
-            format={timeModel}
-            customStyles={{
-              dateInput: styles.dateInput,
-              dateText: styles.dateText
-            }}
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
+          <Date
+            currDate={this.props.formatedRemovingDate}
+            setCurrent={this.props.changeDateRemoving}
+            viewStyle={styles.dateView}
+            dateStyle={styles.dateStyle}
           />
         </View>
-        <SettingButton title="Удалить" />
+        <SettingButton title="Удалить" onPress={this.removeDates} />
         <TextBlock styles={styles.header} bold>
           Настройки отчётов
         </TextBlock>

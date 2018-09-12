@@ -14,8 +14,13 @@ export default StyleSheet.create({
     marginBottom: 20
   },
   dateInput: { margin: 0, borderColor: "transparent" },
-  dateText: {
+  dateStyle: {
     fontSize: theme.fontSizes.main,
-    color: "#000"
+    color: "#000",
+    marginRight: -50
+  },
+  dateView: {
+    flexDirection: "row",
+    alignItems: "center"
   }
 });
