@@ -1,0 +1,173 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddPurchase> renders without crashing 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#fff",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "padding": 10,
+      "shadowColor": "rgba(0, 0, 0, 0.19)",
+      "shadowOffset": Object {
+        "height": 0,
+        "width": 0,
+      },
+      "shadowRadius": 9,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "paddingRight": 14,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderBottomWidth": 1,
+          "borderColor": "#D9D5DC",
+          "borderLeftWidth": 0,
+          "borderRightWidth": 0,
+          "borderTopWidth": 0,
+          "flexDirection": "row",
+          "marginBottom": 12,
+          "marginLeft": 2,
+          "opacity": 1,
+          "width": "100%",
+        }
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        editable={true}
+        keyboardType="numeric"
+        onChangeText={[Function]}
+        placeholder="Кол-во 0.0 шт."
+        placeholderTextColor="#575757"
+        style={
+          Array [
+            Object {
+              "color": "#000",
+              "flex": 1,
+              "fontSize": 17,
+              "height": 50,
+              "paddingLeft": 5,
+              "paddingRight": 5,
+              "top": 1.5,
+            },
+            Object {
+              "height": 30,
+              "paddingHorizontal": 10,
+              "paddingVertical": 0,
+              "width": "100%",
+            },
+          ]
+        }
+        underlineColorAndroid="rgba(0,0,0,0)"
+        value=""
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "paddingRight": 14,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderBottomWidth": 1,
+          "borderColor": "#D9D5DC",
+          "borderLeftWidth": 0,
+          "borderRightWidth": 0,
+          "borderTopWidth": 0,
+          "flexDirection": "row",
+          "marginBottom": 12,
+          "marginLeft": 2,
+          "opacity": 1,
+          "width": "100%",
+        }
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        editable={true}
+        keyboardType="numeric"
+        onChangeText={[Function]}
+        placeholder="Цена 0.0 грн"
+        placeholderTextColor="#575757"
+        style={
+          Array [
+            Object {
+              "color": "#000",
+              "flex": 1,
+              "fontSize": 17,
+              "height": 50,
+              "paddingLeft": 5,
+              "paddingRight": 5,
+              "top": 1.5,
+            },
+            Object {
+              "height": 30,
+              "paddingHorizontal": 10,
+              "paddingVertical": 0,
+              "width": "100%",
+            },
+          ]
+        }
+        underlineColorAndroid="rgba(0,0,0,0)"
+        value=""
+      />
+    </View>
+  </View>
+  <Text
+    allowFontScaling={false}
+    onPress={[Function]}
+    style={
+      Array [
+        Object {
+          "color": "#f00",
+          "fontSize": 30,
+        },
+        undefined,
+        Object {
+          "fontFamily": "FontAwesome",
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+        },
+        Object {},
+      ]
+    }
+  >
+    
+  </Text>
+</View>
+`;
