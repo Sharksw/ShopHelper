@@ -1,0 +1,24 @@
+{
+  "settingsTitle": "Настройки",
+  "settingsPurchases": "Настройки покупок",
+  "settingsReports": "Настройки отчетов",
+  "settingsDeleteAllDataBefore": "Удалить все записи по",
+  "settingsReportOnPurchases": "Отчет о закупках",
+  "delete": "Удалить",
+  "save": "Сохранить",
+
+  "purchase": "Покупка",
+  "product": "Товар",
+  "count": "Кол-во",
+  "pieces": "шт.",
+  "price": "Цена",
+  "purchaseTotal": "Сумма",
+
+  "hryvna": "Гривна",
+  "dollar": "Доллар",
+  "euro": "Евро",
+
+  "hryvnaShort": "грн.",
+  "dollarShort": "дол.",
+  "euroShort": "евр."
+}

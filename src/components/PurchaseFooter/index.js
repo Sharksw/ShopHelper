@@ -6,6 +6,7 @@ import { Keyboard } from "react-native";
 import TextBlock from "../TextBlock";
 
 import styles from "./styles";
+import i18n from "../../i18n";
 
 type Props = {
   quantity: number,
@@ -48,10 +49,10 @@ class PurchaseFooter extends PureComponent<Props, State> {
     return this.state.hideFooter ? (
       <View style={styles.footerContainer}>
         <TextBlock styles={styles.footerText}>
-          {this.props.quantity} линии
+          {this.props.quantity} {i18n.t("pieces")}
         </TextBlock>
         <TextBlock styles={styles.footerText}>
-          {this.props.amount} порций
+          {this.props.amount} {i18n.t("purchaseTotal")}
         </TextBlock>
       </View>
     ) : null;

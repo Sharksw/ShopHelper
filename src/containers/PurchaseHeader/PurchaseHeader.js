@@ -4,6 +4,7 @@ import { View } from "react-native";
 import { Text } from "native-base";
 
 import HeaderInput from "../../components/HeaderInput";
+import i18n from "../../i18n";
 
 type Props = {
   shop: any,
@@ -27,7 +28,7 @@ const PurchaseHeader = (props: Props) => {
       }}
     >
       <HeaderInput
-        placeholder="Покупка"
+        placeholder={i18n.t("purchase")}
         value={name}
         onChangeText={text =>
           props.updateShop({ id, date: props.date, param: "name", value: text })

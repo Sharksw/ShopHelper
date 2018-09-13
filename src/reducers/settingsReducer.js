@@ -2,6 +2,8 @@
 import { handleActions } from "redux-actions";
 import { Record } from "immutable";
 import type { RecordFactory, RecordOf } from "immutable";
+import RNLanguages from "react-native-languages";
+
 import type { Payload } from "../types";
 import * as settingActions from "../actions/settingActions";
 
@@ -18,7 +20,7 @@ type state = {
 export const SettingsInitialState: RecordFactory<state> = Record(
   {
     currency: "UAH",
-    locale: "ru",
+    locale: RNLanguages.language,
     reportName: "",
     email: "",
     removingDate: getUtcTime()
@@ -26,10 +28,18 @@ export const SettingsInitialState: RecordFactory<state> = Record(
   "settingsReducerState"
 );
 
+// const setLocale = language => {
+//   RNLanguages.language = language;
+//   i18n.locale = language;
+// };
+
 const changeSetting = (
   state,
   { payload }: Payload<{ name: string, value: string }>
 ): RecordOf<{ name: string, value: string }> =>
+  // if (payload.name === "locale") {
+  //   setLocale(payload.value);
+  // }
   state.set(payload.name, payload.value);
 
 const handleSetCurrent = (

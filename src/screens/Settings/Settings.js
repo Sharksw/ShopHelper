@@ -8,7 +8,11 @@ import Input from "../../components/Input";
 import Select from "../../components/Select";
 import TextBlock from "../../components/TextBlock";
 
-import { languages, currencies } from "../../constants/options";
+import {
+  // languages,
+  currencies
+} from "../../constants/options";
+import i18n from "../../i18n";
 
 import styles from "./styles";
 
@@ -33,7 +37,7 @@ class Settings extends PureComponent<Props> {
     return (
       <View style={styles.settingContainer}>
         <TextBlock styles={styles.header} bold>
-          Настройки покупок
+          {i18n.t("settingsPurchases")}
         </TextBlock>
         <Select
           placeholder="Гривны"
@@ -41,15 +45,15 @@ class Settings extends PureComponent<Props> {
           onValueChange={value => this.changeSetting("currency", value)}
           options={currencies}
         />
-        <Select
+        {/* <Select
           selectedValue={this.props.locale}
           onValueChange={value => this.changeSetting("locale", value)}
           placeholder="Language"
           options={languages}
-        />
+        /> */}
         {/* <SettingButton onPress={() => {}} title="Сохранить" /> */}
         <View style={styles.dateContainer}>
-          <TextBlock>Удалить все записи по: </TextBlock>
+          <TextBlock>{i18n.t("settingsDeleteAllDataBefore")} </TextBlock>
           <Date
             currDate={this.props.formatedRemovingDate}
             setCurrent={this.props.changeDateRemoving}
@@ -57,9 +61,9 @@ class Settings extends PureComponent<Props> {
             dateStyle={styles.dateStyle}
           />
         </View>
-        <SettingButton title="Удалить" onPress={this.removeDates} />
+        <SettingButton title={i18n.t("delete")} onPress={this.removeDates} />
         <TextBlock styles={styles.header} bold>
-          Настройки отчётов
+          {i18n.t("settingsReports")}
         </TextBlock>
         <Input
           placeholder="example@gmail.com"
@@ -67,7 +71,7 @@ class Settings extends PureComponent<Props> {
           onChangeText={text => this.changeSetting("email", text)}
         />
         <Input
-          placeholder="Отчёт о закупках"
+          placeholder={i18n.t("settingsReportOnPurchases")}
           value={this.props.reportName}
           onChangeText={text => this.changeSetting("reportName", text)}
         />
@@ -78,7 +82,7 @@ class Settings extends PureComponent<Props> {
 }
 
 Settings.navigationOptions = {
-  title: "Settings"
+  title: i18n.t("settingsTitle")
 };
 
 export default Settings;

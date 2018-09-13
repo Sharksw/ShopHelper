@@ -9,6 +9,7 @@ import TextBlock from "../TextBlock";
 
 import { floatInputValue } from "../../utils/formatInput";
 import styles from "./styles";
+import i18n from "../../i18n";
 
 type Props = {
   goToPage: any,
@@ -45,7 +46,7 @@ class PurchaseItem extends PureComponent<Props> {
         <View style={styles.itemHeader}>
           <View style={{ flex: 1 }}>
             <Input
-              placeholder="Товар"
+              placeholder={i18n.t("purchase")}
               value={this.props.name}
               onChangeText={text => this.handleChangeInput("name", text)}
             />
@@ -94,7 +95,7 @@ class PurchaseItem extends PureComponent<Props> {
           </View>
           <View style={styles.itemConsumption}>
             <Input
-              placeholder="Кол-во 0.0 шт."
+              placeholder={`${i18n.t("count")} 0.0 ${i18n.t("pieces")}.`}
               value={floatInputValue(this.props.quantity)}
               keyboardType="numeric"
               onChangeText={text => this.handleChangeInput("quantity", text)}
@@ -102,7 +103,7 @@ class PurchaseItem extends PureComponent<Props> {
             <View style={styles.row}>
               <View style={styles.inputContainer}>
                 <Input
-                  placeholder="Цена 0.0 шт."
+                  placeholder={`Цена 0.0 ${i18n.t("pieces")}.`}
                   value={floatInputValue(this.props.price)}
                   keyboardType="numeric"
                   onChangeText={text => this.handleChangeInput("price", text)}
@@ -111,10 +112,10 @@ class PurchaseItem extends PureComponent<Props> {
               <TextBlock>{currency}</TextBlock>
             </View>
             <View style={styles.row}>
-              <TextBlock>Сумма:</TextBlock>
+              <TextBlock>{i18n.t("purchaseTotal")}:</TextBlock>
               <View style={styles.inputContainer}>
                 <Input
-                  placeholder="Cумма 0.0 шт."
+                  placeholder={`Cумма 0.0 ${i18n.t("pieces")}.`}
                   value={floatInputValue(this.props.amount)}
                   keyboardType="numeric"
                   onChangeText={text => this.handleChangeInput("amount", text)}

@@ -6,6 +6,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import Input from "../../components/Input";
 
 import styles from "./styles";
+import i18n from "../../i18n";
 
 type Props = {
   id: string,
@@ -48,7 +49,7 @@ class AddPurchase extends PureComponent<Props, State> {
       <View style={styles.item}>
         <View style={styles.inputContainer}>
           <Input
-            placeholder="Кол-во 0.0 шт."
+            placeholder={`${i18n.t("count")} 0.0 ${i18n.t("pieces")}`}
             onChangeText={text => this.handleChange("quantity", text)}
             value={this.state.quantity}
             keyboardType="numeric"
@@ -56,7 +57,7 @@ class AddPurchase extends PureComponent<Props, State> {
         </View>
         <View style={styles.inputContainer}>
           <Input
-            placeholder="Цена 0.0 грн"
+            placeholder={`${i18n.t("price")} 0.0 ${i18n.t("hryvnaShort")}`}
             onChangeText={text => this.handleChange("price", text)}
             value={this.state.price}
             keyboardType="numeric"

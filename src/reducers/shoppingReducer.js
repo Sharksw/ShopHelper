@@ -7,11 +7,12 @@ import uuid from "uuid";
 import type { Payload, ShopItem, PurchaseItem } from "../types";
 
 import * as shoppingActions from "../actions/shoppingActions";
+import i18n from "../i18n";
 
 export const DateItem: RecordFactory<ShopItem> = Record(
   {
     id: uuid(),
-    name: "Покупка",
+    name: i18n.t("purchase"),
     currency: "USD",
     totalAmount: 0
   },
@@ -23,7 +24,7 @@ type dateList = List<DateItem>;
 export const PurchaseItemState: RecordFactory<PurchaseItem> = Record(
   {
     id: uuid(),
-    name: "Товар",
+    name: i18n.t("product"),
     price: 0.0,
     quantity: 1.0,
     photo: "",
@@ -74,7 +75,11 @@ const addShop = (
   const list = state.getIn(["dates", date], List());
 
   const updateList = list.push(
-    new DateItem({ id, name: `Покупка ${list.size + 1}`, currency })
+    new DateItem({
+      id,
+      name: `${i18n.t("purchase")} ${list.size + 1}`,
+      currency
+    })
   );
 
   return state.setIn(["dates", date], updateList);
@@ -99,7 +104,7 @@ const addPurchase = (
     new PurchaseItemState({
       id: uuid(),
       currency,
-      name: `Товар ${purchaseList.size + 1}`,
+      name: `${i18n.t("product")} ${purchaseList.size + 1}`,
       price: +price,
       quantity: +quantity,
       date,

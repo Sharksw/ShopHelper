@@ -1,0 +1,24 @@
+{
+  "settingsTitle": "Settings",
+  "settingsPurchases": "Purchases settings",
+  "settingsReports": "Reports settings",
+  "settingsDeleteAllDataBefore": "Remove all data before",
+  "settingsReportOnPurchases": "Report on purchases",
+  "delete": "Delete",
+  "save": "Save",
+
+  "purchase": "Purchase",
+  "product": "Product",
+  "count": "Сount",
+  "pieces": "pc.",
+  "price": "Price",
+  "purchaseTotal": "Total",
+
+  "hryvna": "Hryvna",
+  "dollar": "Dollar",
+  "euro": "Euro",
+
+  "hryvnaShort": "uah",
+  "dollarShort": "usd",
+  "euroShort": "eur"
+}

@@ -8,7 +8,8 @@ export default StyleSheet.create({
   },
   dateContainer: {
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
+    marginTop: 50
   },
   header: {
     marginBottom: 20
