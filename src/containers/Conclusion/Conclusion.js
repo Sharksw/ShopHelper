@@ -29,13 +29,12 @@ class Conclusion extends Component<Props> {
   excelPress = async () => {
     try {
       this.props.switchLoading(true);
-      const data = await excelConverter(
-        this.props.shopsPurchases
-          .toList()
-          .sortBy(item => item.date)
-          .flatten()
-          .toJS()
-      );
+      const dataForConvert = this.props.shopsPurchases
+        .toList()
+        .sortBy(item => item.date)
+        .flatten()
+        .toJS();
+      const data = await excelConverter(dataForConvert, "Report");
 
       const file =
         Platform.OS === "android"

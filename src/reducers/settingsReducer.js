@@ -21,7 +21,7 @@ export const SettingsInitialState: RecordFactory<state> = Record(
   {
     currency: "UAH",
     locale: RNLanguages.language,
-    reportName: "",
+    reportName: "report",
     email: "",
     removingDate: getUtcTime()
   },

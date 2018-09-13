@@ -34,6 +34,7 @@ class PurchasesScreen extends React.Component<Props> {
   static getDerivedStateFromProps(nextProps, prevState) {
     if ((!prevState.id || !prevState.shop) && nextProps.navigation) {
       const id = nextProps.navigation.getParam("id");
+
       return {
         id,
         shop: nextProps.shopList.find(item => item.id === id)
@@ -45,7 +46,7 @@ class PurchasesScreen extends React.Component<Props> {
   componentWillUnmount = () => {
     const { purchases, deleteShop, currentDate } = this.props;
 
-    if (!purchases) {
+    if (!purchases.size) {
       deleteShop({ date: currentDate, id: this.state.shop.get("id") });
     }
   };

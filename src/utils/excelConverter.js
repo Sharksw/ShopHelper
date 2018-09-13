@@ -2,9 +2,9 @@ import ExcelBuilder from "excel-builder-webpack";
 
 import { formatDate } from "./dateService";
 
-export default dataForExcel => {
+export default (dataForExcel, name = "Report") => {
   const workbook = ExcelBuilder.Builder.createWorkbook();
-  const worksheet = workbook.createWorksheet({ name: "Report" });
+  const worksheet = workbook.createWorksheet({ name });
 
   // const originalData = [
   //   [
