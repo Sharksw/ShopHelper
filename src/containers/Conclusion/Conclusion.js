@@ -8,6 +8,8 @@ import {
 } from "react-native-fs";
 import Share from "react-native-share";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { connect } from "react-redux";
+
 import styles from "./styles";
 import { iconSize } from "../../config/commonSizes";
 import excelConverter from "../../utils/excelConverter";
@@ -34,12 +36,15 @@ class Conclusion extends Component<Props> {
         .sortBy(item => item.date)
         .flatten()
         .toJS();
-      const data = await excelConverter(dataForConvert, "Report");
+      const data = await excelConverter(
+        dataForConvert,
+        this.props.state.reportName
+      );
 
       const file =
         Platform.OS === "android"
-          ? `${ExternalDirectoryPath}/report.xlsx`
-          : `${DocumentDirectoryPath}/report.xlsx`;
+          ? `${ExternalDirectoryPath}/${this.props.state.reportName}.xlsx`
+          : `${DocumentDirectoryPath}/${this.props.state.reportName}.xlsx`;
 
       await writeFile(file, data, "ascii");
       const shareOptions = {
@@ -48,8 +53,8 @@ class Conclusion extends Component<Props> {
       };
       await Share.open(shareOptions);
     } catch (err) {
-      console.log("error");
-      console.log(err);
+      // console.log("error");
+      // console.log(err);
     } finally {
       this.props.switchLoading(false);
     }
@@ -72,4 +77,8 @@ class Conclusion extends Component<Props> {
   }
 }
 
-export default Conclusion;
+const mapStateToProps = state => ({
+  state: state.settingReducer
+});
+
+export default connect(mapStateToProps)(Conclusion);

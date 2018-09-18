@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
   getIsDatePickerOpen,
-  getIsLoading
+  getIsLoading,
+  getCurrentDate
 } from "../../selectors/mainSelectors";
 import {
   getShopList,
@@ -11,7 +12,7 @@ import {
   getShopsPurchases
 } from "../../selectors/shoppingSelectors";
 import { changeDate } from "../../actions/mainActions";
-import { createShop } from "../../actions/shoppingActions";
+import { createShop, deleteShop } from "../../actions/shoppingActions";
 import FirstScreen from "./FirstScreen";
 
 const makeMapStateToProps = () => {
@@ -20,14 +21,16 @@ const makeMapStateToProps = () => {
     showDatePicker: getIsDatePickerOpen,
     shopList: getShopList,
     shopsPurchases: getShopsPurchases,
-    amountOfMoney: getDailyAmount
+    amountOfMoney: getDailyAmount,
+    currentDate: getCurrentDate
   });
   return mapStateToProps;
 };
 
 const mapDispatchToProps = {
   setCurrentDate: changeDate.setCurrent,
-  createShop
+  createShop,
+  deleteShop
 };
 
 export default connect(

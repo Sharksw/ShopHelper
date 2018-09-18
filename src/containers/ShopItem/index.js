@@ -10,10 +10,11 @@ type Props = {
   amount: string,
   id: string,
   currency: string,
-  goToPage: Function
+  goToPage: Function,
+  openModal: Function
 };
 
-const ShopItem = ({ text, amount, goToPage, id, currency }: Props) => (
+const ShopItem = ({ text, amount, id, currency, openModal }: Props) => (
   <View style={styles.container}>
     <View style={styles.wrapper}>
       <Icon name="check-circle" size={iconSize} style={styles.checkCircle} />
@@ -21,11 +22,7 @@ const ShopItem = ({ text, amount, goToPage, id, currency }: Props) => (
       <Text style={styles.shopPrice}>{`(${amount}) `}</Text>
       <Text style={styles.shopPrice}>{currency}</Text>
     </View>
-    <Icon
-      name="pencil"
-      size={iconSize}
-      onPress={() => goToPage("PurchasesScreen", { id })}
-    />
+    <Icon name="pencil" size={iconSize} onPress={() => openModal(id)} />
   </View>
 );
 

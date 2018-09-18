@@ -133,9 +133,15 @@ const deleteShop = (
 ): RecordOf<state> => {
   const shopList = getList(state, "dates", date);
   const updatedList = shopList.filter(item => item.id !== id);
+  state.get("shops").delete(id);
 
-  return state.setIn(["dates", date], updatedList);
+  return state.withMutations(mutateState =>
+    mutateState
+      .setIn(["dates", date], updatedList)
+      .set("shops", state.get("shops"))
+  );
 };
+
 const deletePurchase = (
   state,
   {
