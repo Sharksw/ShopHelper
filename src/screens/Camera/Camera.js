@@ -25,7 +25,6 @@ export default class Camera extends PureComponent {
         100
       );
       const base64 = await readFile(uri, "base64");
-      console.log(base64);
 
       updatePurchase({
         id,
