@@ -2,6 +2,8 @@
 import React, { PureComponent } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { RNCamera } from "react-native-camera";
+import ImageResizer from "react-native-image-resizer";
+import { readFile } from "react-native-fs";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import styles from "./styles";
@@ -9,17 +11,27 @@ import styles from "./styles";
 export default class Camera extends PureComponent {
   takePicture = async () => {
     if (this.camera) {
-      const options = { quality: 0.3, base64: true };
+      const options = { quality: 1, base64: true };
       const data = await this.camera.takePictureAsync(options);
       const id = this.props.navigation.getParam("id");
       const shopId = this.props.navigation.getParam("shopId");
       const { updatePurchase, currentDate } = this.props;
 
+      const { uri } = await ImageResizer.createResizedImage(
+        `data:image/jpeg;base64, ${data.base64}`,
+        800,
+        600,
+        "JPEG",
+        100
+      );
+      const base64 = await readFile(uri, "base64");
+      console.log(base64);
+
       updatePurchase({
         id,
         shopId,
         param: "photo",
-        value: data.base64,
+        value: base64,
         date: currentDate
       });
       this.props.navigation.goBack();
