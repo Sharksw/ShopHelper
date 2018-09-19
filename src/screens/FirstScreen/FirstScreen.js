@@ -81,6 +81,11 @@ class FirstScreen extends React.PureComponent<Props> {
       }
     ]);
 
+  copy = () => {
+    this.setState({ modalActionsIsVisible: false });
+    this.props.createCopyShop(this.state.itemId);
+  };
+
   render() {
     const size = iconSize * 1.4;
     return (
@@ -112,7 +117,7 @@ class FirstScreen extends React.PureComponent<Props> {
                 this.goToPage("PurchasesScreen", { id: this.state.itemId })
               }
               delete={this.delete}
-              copy={() => this.props.createShop()}
+              copy={this.copy}
             />
           </View>
         </ImageBackground>

@@ -10,7 +10,6 @@ type Props = {
   amount: string,
   id: string,
   currency: string,
-  goToPage: Function,
   openModal: Function
 };
 
