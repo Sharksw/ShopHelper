@@ -12,7 +12,11 @@ import {
   getShopsPurchases
 } from "../../selectors/shoppingSelectors";
 import { changeDate } from "../../actions/mainActions";
-import { createShop, deleteShop } from "../../actions/shoppingActions";
+import {
+  createShop,
+  deleteShop,
+  createCopyShop
+} from "../../actions/shoppingActions";
 import FirstScreen from "./FirstScreen";
 
 const makeMapStateToProps = () => {
@@ -30,7 +34,8 @@ const makeMapStateToProps = () => {
 const mapDispatchToProps = {
   setCurrentDate: changeDate.setCurrent,
   createShop,
-  deleteShop
+  deleteShop,
+  createCopyShop
 };
 
 export default connect(

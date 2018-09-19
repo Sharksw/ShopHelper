@@ -85,6 +85,30 @@ const addShop = (
   return state.setIn(["dates", date], updateList);
 };
 
+const copyShop = (
+  state,
+  {
+    payload
+  }: Payload<{
+    id: string,
+    date: string,
+    copyToShops: List,
+    copyToDates: Record
+  }>
+): RecordOf<state> => {
+  const { id, date, copyToShops, copyToDates } = payload;
+
+  const shopsList = state.getIn(["shops", copyToDates.get("id")], List());
+  const datesList = state.getIn(["dates", date], List());
+
+  const updateShopsList = shopsList.push(...copyToShops);
+  const updateDatesList = datesList.push(copyToDates);
+
+  return state
+    .setIn(["shops", id], updateShopsList)
+    .setIn(["dates", date], updateDatesList);
+};
+
 const addPurchase = (
   state,
   {
@@ -260,6 +284,7 @@ const removeTillDate = (
 export default handleActions(
   {
     [shoppingActions.addShop]: addShop,
+    [shoppingActions.copyShop]: copyShop,
     [shoppingActions.updateShop]: updateShop,
     [shoppingActions.deleteShop]: deleteShop,
     [shoppingActions.createPurchase]: addPurchase,
