@@ -6,6 +6,11 @@ export default StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "black"
   },
+  opacityView: {
+    flex: 0,
+    flexDirection: "row",
+    justifyContent: "flex-start"
+  },
   preview: {
     flex: 1,
     justifyContent: "flex-end",

@@ -5,20 +5,24 @@ import { Navigator } from "../../config/navigator";
 import Loader from "../../components/Loader";
 
 type Props = {
-  isLoading: boolean
+  isLoading: boolean,
+  loadingMessage: string
 };
 
 class NavigatorContainer extends React.Component<Props> {
   componentDidMount = () => {
     if (this.props.isLoading) {
-      this.props.switchLoading(false);
+      this.props.switchLoading({ condition: false, text: "" });
     }
   };
 
   render = () => (
     <>
       <Navigator />
-      <Loader condition={this.props.isLoading} />
+      <Loader
+        condition={this.props.isLoading}
+        message={this.props.loadingMessage}
+      />
     </>
   );
 }

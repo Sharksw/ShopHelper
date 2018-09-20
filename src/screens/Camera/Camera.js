@@ -8,32 +8,51 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 import styles from "./styles";
 
-export default class Camera extends PureComponent {
+type Props = {
+  currentDate: string,
+  updatePurchase: Function,
+  switchLoading: Function
+};
+
+export default class Camera extends PureComponent<Props> {
   takePicture = async () => {
-    if (this.camera) {
-      const options = { quality: 1, base64: true };
-      const data = await this.camera.takePictureAsync(options);
-      const id = this.props.navigation.getParam("id");
-      const shopId = this.props.navigation.getParam("shopId");
-      const { updatePurchase, currentDate } = this.props;
+    try {
+      if (this.camera) {
+        this.props.switchLoading({
+          condition: true,
+          text: "Photo is processed"
+        });
+        const options = { quality: 1, base64: true };
+        const data = await this.camera.takePictureAsync(options);
+        const id = this.props.navigation.getParam("id");
+        const shopId = this.props.navigation.getParam("shopId");
+        const { updatePurchase, currentDate } = this.props;
 
-      const { uri } = await ImageResizer.createResizedImage(
-        `data:image/jpeg;base64, ${data.base64}`,
-        800,
-        600,
-        "JPEG",
-        100
-      );
-      const base64 = await readFile(uri, "base64");
+        const { uri } = await ImageResizer.createResizedImage(
+          `data:image/jpeg;base64, ${data.base64}`,
+          800,
+          600,
+          "JPEG",
+          100
+        );
+        const base64 = await readFile(uri, "base64");
 
-      updatePurchase({
-        id,
-        shopId,
-        param: "photo",
-        value: base64,
-        date: currentDate
+        updatePurchase({
+          id,
+          shopId,
+          param: "photo",
+          value: base64,
+          date: currentDate
+        });
+        this.props.navigation.goBack();
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      this.props.switchLoading({
+        condition: false,
+        text: ""
       });
-      this.props.navigation.goBack();
     }
   };
 
@@ -42,13 +61,7 @@ export default class Camera extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
-        <View
-          style={{
-            flex: 0,
-            flexDirection: "row",
-            justifyContent: "flex-start"
-          }}
-        >
+        <View style={styles.opacityView}>
           <TouchableOpacity onPress={this.goBack} style={styles.button}>
             <Icon name="chevron-left" size={10} />
           </TouchableOpacity>

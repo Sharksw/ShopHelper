@@ -4,18 +4,21 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import Camera from "./Camera";
-import { getCurrentDate } from "../../selectors/mainSelectors";
+import { getCurrentDate, getIsLoading } from "../../selectors/mainSelectors";
 import { updatePurchase } from "../../actions/shoppingActions";
+import { switchLoading } from "../../actions/mainActions";
 
 const makeMapStateToProps = () => {
   const mapStateToProps = createStructuredSelector({
-    currentDate: getCurrentDate
+    currentDate: getCurrentDate,
+    loading: getIsLoading
   });
   return mapStateToProps;
 };
 
 const mapDispatchToProps = {
-  updatePurchase
+  updatePurchase,
+  switchLoading
 };
 
 export default connect(

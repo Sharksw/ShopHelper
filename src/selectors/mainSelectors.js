@@ -21,3 +21,6 @@ export const getIsDatePickerOpen = createSelector(getMainState, main =>
 export const getIsLoading = createSelector(getMainState, main =>
   main.get("isLoading")
 );
+export const getLoadingMessage = createSelector(getMainState, main =>
+  main.get("loadingMessage")
+);

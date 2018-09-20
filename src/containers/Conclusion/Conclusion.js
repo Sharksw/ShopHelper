@@ -30,7 +30,10 @@ class Conclusion extends Component<Props> {
 
   excelPress = async () => {
     try {
-      this.props.switchLoading(true);
+      this.props.switchLoading({
+        condition: true,
+        text: "Excel report is making"
+      });
       const dataForConvert = this.props.shopsPurchases
         .toList()
         .sortBy(item => item.date)
@@ -56,7 +59,7 @@ class Conclusion extends Component<Props> {
       // console.log("error");
       // console.log(err);
     } finally {
-      this.props.switchLoading(false);
+      this.props.switchLoading({ condition: false, text: "" });
     }
   };
 

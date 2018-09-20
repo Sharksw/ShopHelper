@@ -19,7 +19,8 @@ export const MainInitialState: RecordFactory<state> = Record(
     name: "shopHelper",
     currentDate: getUtcTime(),
     isDatePickerOpen: false,
-    isLoading: false
+    isLoading: false,
+    loadingMessage: ""
   },
   "mainReducerState"
 );
@@ -29,8 +30,13 @@ const handleOpenDatePicker = (state): RecordOf<state> =>
 
 const handleSwitchLoading = (
   state,
-  { payload }: Payload<boolean>
-): RecordOf<state> => state.set("isLoading", payload);
+  { payload }: Payload<{ condition: boolean, text: string }>
+): RecordOf<state> =>
+  state.withMutations(entity =>
+    entity
+      .set("isLoading", payload.condition)
+      .set("loadingMessage", payload.text)
+  );
 
 const handleIncreaseDate = (state): RecordOf<state> => {
   const currTime = state.get("currentDate");

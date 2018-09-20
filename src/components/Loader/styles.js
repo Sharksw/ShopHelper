@@ -7,7 +7,11 @@ export default StyleSheet.create({
     left: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.2)",
-    justifyContent: "center"
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  spinnerText: {
+    color: "#45D56E"
   }
 });
