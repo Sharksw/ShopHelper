@@ -1,6 +1,7 @@
 import ExcelBuilder from "excel-builder-webpack";
 
 import { formatDate } from "./dateService";
+import atob from "./atobService";
 
 export default (dataForExcel, name = "Report") => {
   const workbook = ExcelBuilder.Builder.createWorkbook();
