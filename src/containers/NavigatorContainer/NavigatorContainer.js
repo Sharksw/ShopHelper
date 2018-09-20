@@ -8,13 +8,18 @@ type Props = {
   isLoading: boolean
 };
 
-const NavigatorContainer: React.StatelessFunctionalComponent<Props> = ({
-  isLoading
-}) => (
-  <>
-    <Navigator />
-    <Loader condition={isLoading} />
-  </>
-);
+class NavigatorContainer extends React.Component<Props> {
+  componentDidMount = () => {
+    if (this.props.isLoading) {
+      this.props.switchLoading(false);
+    }
+  };
 
+  render = () => (
+    <>
+      <Navigator />
+      <Loader condition={this.props.isLoading} />
+    </>
+  );
+}
 export default NavigatorContainer;
