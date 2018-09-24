@@ -2,13 +2,18 @@
 import { createAction } from "redux-actions";
 import { NavigationActions } from "react-navigation";
 import uuid from "uuid";
-
 import type { Dispatch } from "redux";
+
+import { getUtcTime } from "../utils/dateService";
 
 export const addShop = createAction("ADD_SHOP", payload => payload);
 export const copyShop = createAction("COPY_SHOP", payload => payload);
 export const updateShop = createAction("UPDATE_SHOP", payload => payload);
 export const deleteShop = createAction("DELETE_SHOP", payload => payload);
+export const changeShopDateCreated = createAction(
+  "CHANGE_SHOP_DATE_CREATED",
+  payload => payload
+);
 
 export const createPurchase = createAction("ADD_PURCHASE", payload => payload);
 export const updatePurchase = createAction(
@@ -57,4 +62,16 @@ export const createCopyShop = id => (
   copyToDates = copyToDates.set("name", `${copyToDates.get(["name"])}(copy)`);
 
   dispatch(copyShop({ id: newId, date, copyToShops, copyToDates }));
+};
+
+export const changeShopDateCreatedHandler = (date, shopId) => (
+  dispatch: Dispatch,
+  getState: Function
+) => {
+  const { mainReducer } = getState();
+
+  const oldDate = mainReducer.get("currentDate");
+  const newDate = getUtcTime(date);
+
+  dispatch(changeShopDateCreated({ oldDate, newDate, shopId }));
 };

@@ -14,16 +14,5 @@ export default StyleSheet.create({
     alignItems: "center",
     borderBottomColor: "#dcd5d5",
     borderBottomWidth: 1
-  },
-  modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "column"
-  },
-  modalContent: {
-    padding: 15,
-    backgroundColor: "#fff",
-    width: "80%"
   }
 });

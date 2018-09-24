@@ -1,12 +1,13 @@
 /* @flow */
-import * as React from "react";
+import React from "react";
 import { View, ImageBackground, Alert } from "react-native";
+import DatePicker from "react-native-datepicker";
 
 import Icon from "react-native-vector-icons/FontAwesome";
 import ShopItem from "../../containers/ShopItem";
 import Conclusion from "../../containers/Conclusion";
 import Calendar from "../../containers/Calendar";
-import ModalPurcaseActions from "./ModalPurcaseActions";
+import ModalPurcaseActions from "../../components/ModalPurcaseActions";
 
 import { iconSize } from "../../config/commonSizes";
 import styles from "./styles";
@@ -28,10 +29,18 @@ class FirstScreen extends React.PureComponent<Props> {
     color: "red"
   };
 
-  state = {
-    modalActionsIsVisible: false,
-    itemId: null
-  };
+  constructor(props) {
+    super(props);
+    this.datePickerRef = React.createRef();
+
+    this.state = {
+      modalActionsIsVisible: false,
+      itemId: null
+    };
+  }
+
+  onDateChangeHandler = date =>
+    this.props.changeShopDateCreatedHandler(date, this.state.itemId);
 
   shopListMapper = () => {
     const { shopList, shopsPurchases } = this.props;
@@ -54,13 +63,25 @@ class FirstScreen extends React.PureComponent<Props> {
     });
   };
 
-  goToPage = (page: string, opts: Object = {}): void => {
-    this.props.navigation.navigate(page, opts);
-    this.setState({ modalActionsIsVisible: false });
-  };
-
   openModal = itemId => {
     this.setState({ modalActionsIsVisible: true, itemId });
+  };
+
+  hideModal = () => this.setState({ modalActionsIsVisible: false });
+
+  goToPage = (page: string, opts: Object = {}): void => {
+    this.props.navigation.navigate(page, opts);
+    this.hideModal();
+  };
+
+  edit = () => this.goToPage("PurchasesScreen", { id: this.state.itemId });
+
+  okAlertHandler = () => {
+    this.hideModal();
+    this.props.deleteShop({
+      id: this.state.itemId,
+      date: this.props.currentDate
+    });
   };
 
   delete = () =>
@@ -71,19 +92,17 @@ class FirstScreen extends React.PureComponent<Props> {
       },
       {
         text: "OK",
-        onPress: () => {
-          this.setState({ modalActionsIsVisible: false });
-          this.props.deleteShop({
-            id: this.state.itemId,
-            date: this.props.currentDate
-          });
-        }
+        onPress: this.okAlertHandler
       }
     ]);
 
   copy = () => {
-    this.setState({ modalActionsIsVisible: false });
+    this.hideModal();
     this.props.createCopyShop(this.state.itemId);
+  };
+
+  changeShopDate = () => {
+    this.datePickerRef.current.onPressDate();
   };
 
   render() {
@@ -107,18 +126,25 @@ class FirstScreen extends React.PureComponent<Props> {
                 />
               </View>
             </View>
+
             <Conclusion navigate={() => this.goToPage("Settings")} />
             <ModalPurcaseActions
               isVisible={this.state.modalActionsIsVisible}
-              onBackdropPress={() =>
-                this.setState({ modalActionsIsVisible: false })
-              }
-              edit={() =>
-                this.goToPage("PurchasesScreen", { id: this.state.itemId })
-              }
+              onBackdropPress={this.hideModal}
+              edit={this.edit}
               delete={this.delete}
               copy={this.copy}
-            />
+              changeShopDate={this.changeShopDate}
+            >
+              <DatePicker
+                showIcon={false}
+                ref={this.datePickerRef}
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                onDateChange={this.onDateChangeHandler}
+                hideText
+              />
+            </ModalPurcaseActions>
           </View>
         </ImageBackground>
       </View>

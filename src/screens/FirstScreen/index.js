@@ -15,7 +15,8 @@ import { changeDate } from "../../actions/mainActions";
 import {
   createShop,
   deleteShop,
-  createCopyShop
+  createCopyShop,
+  changeShopDateCreatedHandler
 } from "../../actions/shoppingActions";
 import FirstScreen from "./FirstScreen";
 
@@ -35,7 +36,8 @@ const mapDispatchToProps = {
   setCurrentDate: changeDate.setCurrent,
   createShop,
   deleteShop,
-  createCopyShop
+  createCopyShop,
+  changeShopDateCreatedHandler
 };
 
 export default connect(
