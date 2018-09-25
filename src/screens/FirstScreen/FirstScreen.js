@@ -39,8 +39,10 @@ class FirstScreen extends React.PureComponent<Props> {
     };
   }
 
-  onDateChangeHandler = date =>
+  onDateChangeHandler = date => {
     this.props.changeShopDateCreatedHandler(date, this.state.itemId);
+    this.hideModal();
+  };
 
   shopListMapper = () => {
     const { shopList, shopsPurchases } = this.props;
