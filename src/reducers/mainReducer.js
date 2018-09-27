@@ -16,7 +16,7 @@ type state = {
 
 export const MainInitialState: RecordFactory<state> = Record(
   {
-    name: "vadJs",
+    name: "shopHelper",
     currentDate: getUtcTime(),
     isDatePickerOpen: false,
     isLoading: false

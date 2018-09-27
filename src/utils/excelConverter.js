@@ -1,6 +1,7 @@
 import ExcelBuilder from "excel-builder-webpack";
 
 import { formatDate } from "./dateService";
+import atob from "./atobService";
 
 export default (dataForExcel, name = "Report") => {
   const workbook = ExcelBuilder.Builder.createWorkbook();
@@ -32,6 +33,7 @@ export default (dataForExcel, name = "Report") => {
       "Валюта"
     ]
   ];
+  const drawings = new ExcelBuilder.Drawings();
   dataForExcel.forEach(
     (
       {
@@ -60,9 +62,6 @@ export default (dataForExcel, name = "Report") => {
         currency
       ]);
       if (photo) {
-        const drawings = new ExcelBuilder.Drawings();
-
-        // var picRef = workbook.addMedia("image", "logo.png", imageString);
         const picRef = workbook.addMedia("image", `${id}.jpg`, photo);
         const picture = new ExcelBuilder.Drawing.Picture();
         picture.createAnchor("twoCellAnchor", {
@@ -78,12 +77,11 @@ export default (dataForExcel, name = "Report") => {
         picture.setMedia(picRef);
         drawings.addDrawing(picture);
         worksheet.setRowInstructions(index + 1, { height: 100 });
-
-        worksheet.addDrawings(drawings);
-        workbook.addDrawings(drawings);
       }
     }
   );
+  worksheet.addDrawings(drawings);
+  workbook.addDrawings(drawings);
 
   const columns = [
     { id: "date", name: "Date", type: "date", width: 30 },
