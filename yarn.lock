@@ -5550,9 +5550,10 @@ react-native-screens@^1.0.0-alpha.8:
   version "1.0.0-alpha.9"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-1.0.0-alpha.9.tgz#0d036192e248d454cb7601b659e7630fd0e37e9d"
 
-react-native-share@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-1.1.2.tgz#f205265b9a3563eb20b9e247f17b8cab574a38dc"
+react-native-share@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-1.1.3.tgz#513ea61075e2bb945d33cfda120e12592916299e"
+  integrity sha512-vKAJqgkEt7HjsF0HUwgom+E0FbmFNVZNncHwby1+O8/mXlKugh+Ym6rvv+A2ASHmD5TXKohJMYT2+jYofzPORA==
 
 react-native-tab-view@^0.0.77:
   version "0.0.77"
