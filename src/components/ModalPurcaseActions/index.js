@@ -24,10 +24,11 @@ class ModalPurcaseActions extends React.PureComponent {
           <Button transparent block onPress={this.props.delete}>
             <Text>Удалить</Text>
           </Button>
-          <Button transparent block>
+          <Button transparent block onPress={this.props.changeShopDate}>
             <Text>Изменить дату</Text>
           </Button>
         </View>
+        <View>{this.props.children}</View>
       </Modal>
     );
   }

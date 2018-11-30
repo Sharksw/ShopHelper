@@ -104,9 +104,35 @@ const copyShop = (
   const updateShopsList = shopsList.push(...copyToShops);
   const updateDatesList = datesList.push(copyToDates);
 
+  return state.withMutations(shoppingReducer =>
+    shoppingReducer
+      .setIn(["shops", id], updateShopsList)
+      .setIn(["dates", date], updateDatesList)
+  );
+};
+
+const changeShopDateCreated = (
+  state,
+  {
+    payload
+  }: Payload<{
+    newDate: string,
+    shopId: string
+  }>
+): RecordOf<state> => {
+  const { oldDate, newDate, shopId } = payload;
+
   return state
-    .setIn(["shops", id], updateShopsList)
-    .setIn(["dates", date], updateDatesList);
+    .update("dates", d =>
+      d.withMutations(d => {
+        const shopsArr = d.get(oldDate);
+        const index = shopsArr.findIndex(el => el.id === shopId);
+        d.update(newDate, (arr = List()) =>
+          arr.push(shopsArr.get(index))
+        ).update(oldDate, oldArr => oldArr.delete(index));
+      })
+    )
+    .updateIn(["shops", shopId], s => s.map(i => i.set("date", newDate)));
 };
 
 const addPurchase = (
@@ -285,6 +311,7 @@ export default handleActions(
   {
     [shoppingActions.addShop]: addShop,
     [shoppingActions.copyShop]: copyShop,
+    [shoppingActions.changeShopDateCreated]: changeShopDateCreated,
     [shoppingActions.updateShop]: updateShop,
     [shoppingActions.deleteShop]: deleteShop,
     [shoppingActions.createPurchase]: addPurchase,
