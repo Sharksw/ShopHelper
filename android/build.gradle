@@ -35,14 +35,22 @@ allprojects {
 }
 
 subprojects {
- project.configurations.all {
-    resolutionStrategy.eachDependency { details ->
-       if (details.requested.group == 'com.android.support'
-             && !details.requested.name.contains('multidex') ) {
-          details.useVersion "26.1.0"
-       }
+    project.configurations.all {
+        resolutionStrategy.eachDependency { details ->
+        if (details.requested.group == 'com.android.support'
+                && !details.requested.name.contains('multidex') ) {
+            details.useVersion "26.1.0"
+        }
+        }
     }
- }
+    afterEvaluate {project ->
+        if (project.hasProperty("android")) {
+            android {
+                compileSdkVersion 26 // <-- match this to your project's compileSdkVersion
+                buildToolsVersion '26.0.3' // <-- match this to your project's buildToolsVersion
+            }
+        }
+    }
 }
 
 
