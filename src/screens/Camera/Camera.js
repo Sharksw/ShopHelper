@@ -10,30 +10,37 @@ import styles from "./styles";
 
 export default class Camera extends PureComponent {
   takePicture = async () => {
-    if (this.camera) {
-      const options = { quality: 1, base64: true };
-      const data = await this.camera.takePictureAsync(options);
-      const id = this.props.navigation.getParam("id");
-      const shopId = this.props.navigation.getParam("shopId");
-      const { updatePurchase, currentDate } = this.props;
+    try {
+      if (this.camera) {
+        this.props.switchLoading(true);
+        const options = { quality: 1, base64: true };
+        const data = await this.camera.takePictureAsync(options);
+        const id = this.props.navigation.getParam("id");
+        const shopId = this.props.navigation.getParam("shopId");
+        const { updatePurchase, currentDate } = this.props;
 
-      const { uri } = await ImageResizer.createResizedImage(
-        `data:image/jpeg;base64, ${data.base64}`,
-        800,
-        600,
-        "JPEG",
-        100
-      );
-      const base64 = await readFile(uri, "base64");
+        const { uri } = await ImageResizer.createResizedImage(
+          `data:image/jpeg;base64, ${data.base64}`,
+          800,
+          600,
+          "JPEG",
+          100
+        );
+        const base64 = await readFile(uri, "base64");
 
-      updatePurchase({
-        id,
-        shopId,
-        param: "photo",
-        value: base64,
-        date: currentDate
-      });
-      this.props.navigation.goBack();
+        updatePurchase({
+          id,
+          shopId,
+          param: "photo",
+          value: base64,
+          date: currentDate
+        });
+        this.props.navigation.goBack();
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.props.switchLoading(false);
     }
   };
 
