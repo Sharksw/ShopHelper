@@ -11,7 +11,7 @@ import NavigatorContainer from "./containers/NavigatorContainer";
 
 import configureStore from "./config/store";
 
-const { store, persistor } = configureStore();
+export const { store, persistor } = configureStore();
 
 const App = () => (
   <Provider store={store}>

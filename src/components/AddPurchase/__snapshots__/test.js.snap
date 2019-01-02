@@ -57,7 +57,7 @@ exports[`<AddPurchase> renders without crashing 1`] = `
         editable={true}
         keyboardType="numeric"
         onChangeText={[Function]}
-        placeholder="Кол-во 0.0 шт."
+        placeholder="Сount 0.0 pc."
         placeholderTextColor="#575757"
         style={
           Array [
@@ -122,7 +122,7 @@ exports[`<AddPurchase> renders without crashing 1`] = `
         editable={true}
         keyboardType="numeric"
         onChangeText={[Function]}
-        placeholder="Цена 0.0 грн"
+        placeholder="Price 0.0 uah"
         placeholderTextColor="#575757"
         style={
           Array [

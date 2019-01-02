@@ -16,10 +16,10 @@ class NavigatorContainer extends React.Component<Props> {
   };
 
   render = () => (
-    <>
+    <React.Fragment>
       <Navigator />
       <Loader condition={this.props.isLoading} />
-    </>
+    </React.Fragment>
   );
 }
 export default NavigatorContainer;
