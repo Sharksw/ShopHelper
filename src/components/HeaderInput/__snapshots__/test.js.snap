@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HeaderInput> renders without crashing 1`] = `
+<View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "transparent",
+      "borderBottomWidth": 1,
+      "borderColor": "#D9D5DC",
+      "borderLeftWidth": 0,
+      "borderRightWidth": 0,
+      "borderTopWidth": 0,
+      "flexDirection": "row",
+      "marginLeft": 2,
+      "opacity": 1,
+      "position": "relative",
+      "width": 110,
+    }
+  }
+>
+  <TextInput
+    allowFontScaling={true}
+    editable={true}
+    placeholderTextColor="#fff"
+    style={
+      Array [
+        Object {
+          "color": "#000",
+          "flex": 1,
+          "fontSize": 17,
+          "height": 50,
+          "paddingLeft": 5,
+          "paddingRight": 5,
+          "top": 1.5,
+        },
+        Object {
+          "color": "#fff",
+          "fontSize": 16,
+          "height": 30,
+          "paddingVertical": 0,
+        },
+      ]
+    }
+    underlineColorAndroid="rgba(0,0,0,0)"
+  />
+  <Text
+    allowFontScaling={false}
+    style={
+      Array [
+        Object {
+          "color": undefined,
+          "fontSize": 12,
+        },
+        Object {
+          "color": "#fff",
+          "position": "absolute",
+          "right": 0,
+          "top": 10,
+        },
+        Object {
+          "fontFamily": "FontAwesome",
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+        },
+        Object {},
+      ]
+    }
+  >
+    
+  </Text>
+</View>
+`;
+
+exports[`renders without crashing 1`] = `
+<View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "transparent",
+      "borderBottomWidth": 1,
+      "borderColor": "#D9D5DC",
+      "borderLeftWidth": 0,
+      "borderRightWidth": 0,
+      "borderTopWidth": 0,
+      "flexDirection": "row",
+      "marginLeft": 2,
+      "opacity": 1,
+      "position": "relative",
+      "width": 110,
+    }
+  }
+>
+  <TextInput
+    allowFontScaling={true}
+    editable={true}
+    placeholderTextColor="#fff"
+    style={
+      Array [
+        Object {
+          "color": "#000",
+          "flex": 1,
+          "fontSize": 17,
+          "height": 50,
+          "paddingLeft": 5,
+          "paddingRight": 5,
+          "top": 1.5,
+        },
+        Object {
+          "color": "#fff",
+          "fontSize": 16,
+          "height": 30,
+          "paddingVertical": 0,
+        },
+      ]
+    }
+    underlineColorAndroid="rgba(0,0,0,0)"
+  />
+  <Text
+    allowFontScaling={false}
+    style={
+      Array [
+        Object {
+          "color": undefined,
+          "fontSize": 12,
+        },
+        Object {
+          "color": "#fff",
+          "position": "absolute",
+          "right": 0,
+          "top": 10,
+        },
+        Object {
+          "fontFamily": "FontAwesome",
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+        },
+        Object {},
+      ]
+    }
+  >
+    
+  </Text>
+</View>
+`;
