@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+import moment from "moment";
 import DatePicker from "react-native-datepicker";
 import { View, Text } from "react-native";
 
@@ -16,6 +17,10 @@ const Date = (props: Props) => (
     <DatePicker
       confirmBtnText="Confirm"
       cancelBtnText="Cancel"
+      date={moment(props.currDate)
+        .utc()
+        .valueOf()
+        .toString()}
       onDateChange={props.setCurrent}
       hideText
     />
